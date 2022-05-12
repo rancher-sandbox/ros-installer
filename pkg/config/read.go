@@ -30,7 +30,7 @@ import (
 	"time"
 
 	"github.com/rancher-sandbox/go-tpm"
-	"github.com/rancher-sandbox/os2/pkg/dmidecode"
+	"github.com/rancher-sandbox/ros-installer/pkg/dmidecode"
 	values "github.com/rancher/wrangler/pkg/data"
 	"github.com/rancher/wrangler/pkg/data/convert"
 	schemas2 "github.com/rancher/wrangler/pkg/schemas"
@@ -303,7 +303,7 @@ func ReadConfig(ctx context.Context, cfg string, includeCmdline bool) (result Co
 }
 
 func returnRegistrationData(url, ca, emulatedTPM, TPMSeed, noSmbios string) (map[string]interface{}, error) {
-	opts := []tpm.Option{tpm.WithCAs([]byte(ca))}
+	opts := []tpm.Option{tpm.WithCAs([]byte(ca)), tpm.AppendCustomCAToSystemCA}
 
 	// can be explicitly disabled for testing purposes
 	if noSmbios != "true" {

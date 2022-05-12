@@ -31,7 +31,7 @@ import (
 	"github.com/gorilla/websocket"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	. "github.com/rancher-sandbox/os2/pkg/config"
+	. "github.com/rancher-sandbox/ros-installer/pkg/config"
 )
 
 func writeRead(conn *websocket.Conn, input []byte) ([]byte, error) {

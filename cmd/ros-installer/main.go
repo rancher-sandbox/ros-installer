@@ -21,8 +21,8 @@ import (
 	"flag"
 	"os"
 
-	"github.com/rancher-sandbox/os2/pkg/config"
-	"github.com/rancher-sandbox/os2/pkg/install"
+	"github.com/rancher-sandbox/ros-installer/pkg/config"
+	"github.com/rancher-sandbox/ros-installer/pkg/install"
 	"github.com/sirupsen/logrus"
 	"sigs.k8s.io/yaml"
 )

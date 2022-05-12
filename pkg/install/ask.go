@@ -20,9 +20,9 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/rancher-sandbox/os2/pkg/config"
-	"github.com/rancher-sandbox/os2/pkg/questions"
-	"github.com/rancher-sandbox/os2/pkg/util"
+	"github.com/rancher-sandbox/ros-installer/pkg/config"
+	"github.com/rancher-sandbox/ros-installer/pkg/questions"
+	"github.com/rancher-sandbox/ros-installer/pkg/util"
 )
 
 func Ask(cfg *config.Config) error {
