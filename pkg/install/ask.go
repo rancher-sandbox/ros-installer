@@ -20,6 +20,7 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/pkg/errors"
 	"github.com/rancher-sandbox/ros-installer/pkg/config"
 	"github.com/rancher-sandbox/ros-installer/pkg/questions"
 	"github.com/rancher-sandbox/ros-installer/pkg/util"
@@ -56,12 +57,16 @@ func AskInstallDevice(cfg *config.Config) error {
 		return nil
 	}
 
-	output, err := exec.Command("/bin/sh", "-c", "lsblk -r -o NAME,TYPE | grep -w disk | grep -v fd0 | awk '{print $1}'").CombinedOutput()
+	if cfg.RancherOS.Install.Automatic {
+		return errors.Errorf("Target disk was not provided, please add device option to config file (e.g. device: /dev/sdb)")
+	}
+
+	output, err := exec.Command("/bin/sh", "-c", "lsblk -r -o NAME,TYPE | awk '/disk|loop/ {if ($1 != \"fd0\") {print $1}}'").CombinedOutput()
 	if err != nil {
 		return err
 	}
 	fields := strings.Fields(string(output))
-	i, err := questions.PromptFormattedOptions("Installation target. Device will be formatted", -1, fields...)
+	i, err := questions.PromptFormattedOptions("Installation target. WARNING: Device will be formatted !!!)", -1, fields...)
 	if err != nil {
 		return err
 	}
