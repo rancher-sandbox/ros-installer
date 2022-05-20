@@ -134,7 +134,7 @@ func runInstall(cfg config.Config, output string) error {
 
 	printEnv(cfg)
 
-	installerOpts := []string{"elemental", "install", "--no-verify"}
+	installerOpts := []string{"elemental", "install"}
 
 	cmd := exec.Command("elemental")
 	cmd.Env = append(os.Environ(), ev...)
