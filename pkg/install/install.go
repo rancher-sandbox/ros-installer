@@ -55,7 +55,8 @@ func Run(automatic bool, configFile string, powerOff bool, reboot bool, noReboot
 	}
 
 	if automatic && !cfg.RancherOS.Install.Automatic {
-		return nil
+		fmt.Println("Running automatic installation, option -y will be enforced")
+		cfg.RancherOS.Install.Automatic = true
 	}
 
 	err = Ask(&cfg)
